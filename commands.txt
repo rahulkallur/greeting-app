@@ -1,0 +1,36 @@
+1- Develop Lambda Function Code
+2- zip function code
+3- create lambda function with cli
+4- invoke lambda function with cli
+
+---
+1- Develop Lambda Function Code
+
+goto index.js
+exports.handler = async function() {    
+  }
+
+---
+2- zip function code
+
+// Only files
+zip function.zip index.js
+
+// Both files and directories
+
+zip -r function.zip index.js node_modules
+
+3- create lambda function with cli
+
+aws lambda create-function \
+> --function-name greeting \
+> --runtime nodejs20.x \
+> --zip-file fileb://function.zip \
+> --handler index.handler \
+
+4- invoke lambda
+aws lambda invoke \
+--function-name greeting \
+--cli-binary-format raw-in-base64-out \
+--payload file://event.json \   
+response.json
